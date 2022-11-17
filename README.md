@@ -1,1 +1,1 @@
-Test repo for self hosting actions with k9s
+Test repo for self hosting actions with k8s
