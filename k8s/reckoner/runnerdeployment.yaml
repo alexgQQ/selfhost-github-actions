@@ -6,6 +6,9 @@ spec:
   replicas: 1
   template:
     spec:
+      # Build a custom image from the local Dockerfile and host from
+      # any reachable repo
+      image: ""
       repository: alexgQQ/selfhost-github-actions
       # My build doesn't need docker so lets save some resources
       dockerEnabled: false
