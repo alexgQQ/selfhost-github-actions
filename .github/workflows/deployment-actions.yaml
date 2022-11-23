@@ -24,4 +24,4 @@ jobs:
       - run: |
           cd app
           cat app_template.yaml | envsubst > app.yaml
-          gcloud app deploy --quiet --version=$APP_VERSION
+          gcloud app deploy --quiet --version=$(echo $APP_VERSION | sed 's/\./-/g')
