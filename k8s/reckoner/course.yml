@@ -1,0 +1,29 @@
+namespace: default
+repositories:
+  actions-runner-controller:
+    url: https://actions-runner-controller.github.io/actions-runner-controller
+charts:
+  actions-runner-controller:
+    namespace: default
+    repository: actions-runner-controller
+    chart: actions-runner-controller
+    values:
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      authSecret:
+        create: true
+        # Must manually provide a github PAT with repo access
+        github_token: ""
+      certManagerEnabled: false
+hooks:
+  # This is hacky but reckoner does not play nice with non-helm resources
+  # so we'll manually apply after install, must wait for a bit for the controller
+  # resources to start up though
+  post_install:
+    - sleep 30
+    - kubectl apply -f runnerdeployment.yaml
