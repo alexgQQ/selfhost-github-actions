@@ -1,0 +1,25 @@
+name: Deploy
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+   	  - name: Checkout repo
+      	uses: actions/checkout@v3
+
+      - name: Authenticate to Google Cloud
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCLOUD_SA_KEY }}'
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+
+      - run: echo "COMMIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+      - run: echo "APP_VERSION=$(git tag --points-at HEAD)" >> $GITHUB_ENV
+      - run: cat app_template.yaml | envsubst > app.yaml
+      - run: gcloud app deploy --quiet
