@@ -13,6 +13,9 @@ func TestIndexHandler(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	// t.Setenv is only available on go 1.17+ while the
+	// GAE standard env only has support up til 1.16 so
+	// I'm a minor version off with the test runs
 	test_version := "v1.1.1"
 	test_sha := "2c16273"
 	t.Setenv("APP_VERSION", test_version)
