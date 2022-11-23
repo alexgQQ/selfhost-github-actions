@@ -21,5 +21,7 @@ jobs:
 
       - run: echo "COMMIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
       - run: echo "APP_VERSION=$(git tag --points-at HEAD)" >> $GITHUB_ENV
-      - run: cat app_template.yaml | envsubst > app.yaml
-      - run: gcloud app deploy --quiet
+      - run: |
+          cd app
+          cat app_template.yaml | envsubst > app.yaml
+          gcloud app deploy --quiet
