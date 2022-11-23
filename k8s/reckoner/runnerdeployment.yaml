@@ -1,0 +1,11 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: repo-runner
+spec:
+  replicas: 1
+  template:
+    spec:
+      repository: alexgQQ/selfhost-github-actions
+      # My build doesn't need docker so lets save some resources
+      dockerEnabled: false
