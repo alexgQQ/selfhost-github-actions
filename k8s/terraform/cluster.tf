@@ -19,7 +19,7 @@ resource "google_container_node_pool" "primary_node" {
   node_config {
     preemptible  = true
     machine_type = "e2-small"
-    disk_size_gb = 10
+    disk_size_gb = 20
     disk_type    = "pd-standard"
     image_type   = "COS_CONTAINERD"
 
