@@ -16,3 +16,4 @@ jobs:
         with:
           draft: true
           token: ${{ secrets.REPO_RELEASE_TOKEN }}
+          generate_release_notes: true
