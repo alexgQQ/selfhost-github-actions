@@ -15,5 +15,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           draft: true
-          token: ${{ secrets.REPO_RELEASE_TOKEN }}
           generate_release_notes: true
