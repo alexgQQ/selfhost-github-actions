@@ -8,7 +8,7 @@ spec:
     spec:
       # Build a custom image from the local Dockerfile and host from
       # any reachable repo
-      image: ""
+      image: us.gcr.io/myproject-12345/github-actions:latest
       repository: alexgQQ/selfhost-github-actions
       # My build doesn't need docker so lets save some resources
       dockerEnabled: false

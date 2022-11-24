@@ -1,19 +1,21 @@
 name: Deploy
-
 on:
   release:
     types: [published]
-
 jobs:
   deploy:
     runs-on: self-hosted
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
+      # If not using self hosted runners I'd need to use
+      # an auth step here to auth my service account
+      # - name: Authenticate with Google
+      #   uses: 'google-github-actions/auth@v1'
+      #   with:
+      #     credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
-
       - run: echo "COMMIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
       - run: echo "APP_VERSION=$(git tag --points-at HEAD)" >> $GITHUB_ENV
       - run: |

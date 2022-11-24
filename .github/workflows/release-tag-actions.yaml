@@ -1,15 +1,11 @@
 name: Create Release
-
 on:
   push:
     tags:
       - 'v[0-9].[0-9].[0-9]'
-
 jobs:
   create_release:
-
     runs-on: self-hosted
-
     steps:
       - name: 'Create Release Page'
         uses: softprops/action-gh-release@v1
