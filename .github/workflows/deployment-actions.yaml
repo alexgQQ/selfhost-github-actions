@@ -11,6 +11,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      # If not using self hosted runners I'd need to use
+      # an auth step here to auth my service account
+      # - name: Authenticate with Google
+      #   uses: 'google-github-actions/auth@v1'
+      #   with:
+      #     credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
 
